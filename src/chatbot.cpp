@@ -45,6 +45,20 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+ChatBot::ChatBot(const ChatBot& source){
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+
+    _image = new wxBitmap(*source._image);
+}
+
+ChatBot::ChatBot(ChatBot&& source){
+    std::cout << "ChatBot Move Constructor" << std::endl;
+
+    _image = source._image;
+
+    source._image = NULL;
+}
+
 ////
 //// EOF STUDENT CODE
 
