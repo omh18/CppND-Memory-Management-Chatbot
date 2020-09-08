@@ -5,8 +5,8 @@
 #include <string>
 #include <iostream>
 
-class GraphNode; // forward declaration
 class ChatLogic; // forward declaration
+class GraphNode; // forward declaration
 
 class ChatBot
 {
@@ -35,6 +35,10 @@ public:
 
     ChatBot &operator=(const ChatBot& source){
         std::cout << "ChatBot Copy Assignment Operator" << std::endl;
+	
+	_chatLogic = source._chatLogic;
+	_rootNode = source._rootNode;
+	//_currentNode set shortly after assignment
 
         delete _image;
 
@@ -46,6 +50,10 @@ public:
     ChatBot &operator=(ChatBot&& source){
         std::cout << "ChatBot Move Assignment Operator" << std::endl;
 
+	_chatLogic = source._chatLogic;
+	_rootNode = source._rootNode;  
+	//_currentNode set shortly after assignment
+
         delete _image;
 
         _image = source._image;
@@ -55,9 +63,12 @@ public:
 
         return *this;
     }
+    
+    wxBitmap *GetMemberImageHandle();
 
+    GraphNode *GetCurrentNode(){ return _currentNode; }
 
-
+    void initNode(GraphNode* rootNode){ _currentNode = rootNode; }
     ////
     //// EOF STUDENT CODE
 
@@ -65,7 +76,7 @@ public:
     void SetCurrentNode(GraphNode *node);
     void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; }
     void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
-    wxBitmap *GetImageHandle() { return _image; }
+    wxBitmap *GetImageHandle(){ return _image; }
 
     // communication
     void ReceiveMessageFromUser(std::string message);
