@@ -117,9 +117,6 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     //// STUDENT CODE
     ////
 
-    // create chat logic instance
-    //_chatLogic = std::make_unique<ChatLogic>(); 
-
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
 
@@ -134,9 +131,6 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-
-    // no need to delete _chatLogic, as it goes out of scope and is automatically deallocated from stack
-
     ////
     //// EOF STUDENT CODE
 }
